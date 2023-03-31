@@ -144,43 +144,26 @@ class UsersResourceType extends ResourceType
     {
         switch (strtolower($operation['op'])) {
             case "add":
-                if (isset($operation['path'])) {
-                    $attribute = $this->getMappingForAttribute($operation['path']);
-                    foreach ($operation['value'] as $value) {
-                        $object->{$attribute}->add($value);
-                    }
-                } else {
-                    foreach ($operation['value'] as $key => $value) {
-                        $attribute = $this->getMappingForAttribute($key);
-                        foreach ($value as $v) {
-                            $object->{$attribute}->add($v);
-                        }
-                    }
+                if ($attribute = $this->getMappingForAttribute($operation['path'])) {
+                    $object->{$attribute} = $operation['value'];
                 }
                 break;
             case "remove":
                 if (isset($operation['path'])) {
-                    $attribute = $this->getMappingForAttribute($operation['path']);
-                    $object->{$attribute}->remove();
+                    if ($attribute = $this->getMappingForAttribute($operation['path'])) {
+                        $object->{$attribute} = null;
+                    }
                 } else {
                     throw new AzureProvisioningException("You must provide a \"Path\"");
                 }
                 break;
             case "replace":
                 if (isset($operation['path'])) {
-                    $attribute = $this->getMappingForAttribute($operation['path']);
-                    if ($attribute === "active") {
-                        $object->{$attribute} = ($operation['value'] === true) ? '1' : '0';
-                    } else {
-                        $object->{$attribute} = $operation['value'];
-                    }
-                } else {
-                    foreach ($operation['value'] as $key => $value) {
-                        $attribute = $this->getMappingForAttribute($key);
+                    if ($attribute = $this->getMappingForAttribute($operation['path'])) {
                         if ($attribute === "active") {
-                            $object->{$attribute} = ($value === true) ? '1' : '0';
+                            $object->{$attribute} = ($operation['value'] === true) ? '1' : '0';
                         } else {
-                            $object->{$attribute} = $value;
+                            $object->{$attribute} = $operation['value'];
                         }
                     }
                 }
