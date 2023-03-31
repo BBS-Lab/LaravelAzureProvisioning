@@ -1,14 +1,14 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Utils;
+namespace BBSLab\LaravelAzureProvisioning\Utils;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use RobTrehy\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
-use RobTrehy\LaravelAzureProvisioning\Resources\ResourceType;
-use RobTrehy\LaravelAzureProvisioning\Resources\UsersResourceType;
+use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
+use BBSLab\LaravelAzureProvisioning\Resources\ResourceType;
+use BBSLab\LaravelAzureProvisioning\Resources\UsersResourceType;
 use Tmilos\ScimFilterParser\Ast\ComparisonExpression;
 use Tmilos\ScimFilterParser\Ast\Conjunction;
 use Tmilos\ScimFilterParser\Ast\Disjunction;

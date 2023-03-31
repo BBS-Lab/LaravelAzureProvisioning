@@ -1,10 +1,10 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Resources;
+namespace BBSLab\LaravelAzureProvisioning\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use RobTrehy\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
-use RobTrehy\LaravelAzureProvisioning\Utils\AzureHelper;
+use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
+use BBSLab\LaravelAzureProvisioning\Utils\AzureHelper;
 
 class ResourceType
 {

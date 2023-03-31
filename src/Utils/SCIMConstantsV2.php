@@ -1,6 +1,6 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Utils;
+namespace BBSLab\LaravelAzureProvisioning\Utils;
 
 abstract class SCIMConstantsV2
 {

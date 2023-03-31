@@ -1,6 +1,6 @@
 <?php
 
-use RobTrehy\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
+use BBSLab\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
 
 return [
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Exceptions;
+namespace BBSLab\LaravelAzureProvisioning\Exceptions;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use RobTrehy\LaravelAzureProvisioning\SCIM\Error;
+use BBSLab\LaravelAzureProvisioning\SCIM\Error;
 
 class AzureProvisioningException extends Exception
 {

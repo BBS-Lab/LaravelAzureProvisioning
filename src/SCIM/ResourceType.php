@@ -1,8 +1,8 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\SCIM;
+namespace BBSLab\LaravelAzureProvisioning\SCIM;
 
-use RobTrehy\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
+use BBSLab\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
 use Illuminate\Contracts\Support\Jsonable;
 
 class ResourceType implements Jsonable

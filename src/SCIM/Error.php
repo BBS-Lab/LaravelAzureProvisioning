@@ -1,9 +1,9 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\SCIM;
+namespace BBSLab\LaravelAzureProvisioning\SCIM;
 
 use Illuminate\Contracts\Support\Jsonable;
-use RobTrehy\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
+use BBSLab\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
 
 class Error implements Jsonable
 {

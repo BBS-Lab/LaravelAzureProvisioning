@@ -1,11 +1,11 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\SCIM;
+namespace BBSLab\LaravelAzureProvisioning\SCIM;
 
 use Illuminate\Contracts\Support\Jsonable;
-use RobTrehy\LaravelAzureProvisioning\Resources\ResourceType;
-use RobTrehy\LaravelAzureProvisioning\Utils\AzureHelper;
-use RobTrehy\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
+use BBSLab\LaravelAzureProvisioning\Resources\ResourceType;
+use BBSLab\LaravelAzureProvisioning\Utils\AzureHelper;
+use BBSLab\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
 
 class ListResponse implements Jsonable
 {

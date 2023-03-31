@@ -1,9 +1,9 @@
 <?php
 
-use RobTrehy\LaravelAzureProvisioning\Controllers\ResourceController;
-use RobTrehy\LaravelAzureProvisioning\Controllers\ResourceTypeController;
-use RobTrehy\LaravelAzureProvisioning\Controllers\SchemaController;
-use RobTrehy\LaravelAzureProvisioning\Controllers\ServiceProviderController;
+use BBSLab\LaravelAzureProvisioning\Controllers\ResourceController;
+use BBSLab\LaravelAzureProvisioning\Controllers\ResourceTypeController;
+use BBSLab\LaravelAzureProvisioning\Controllers\SchemaController;
+use BBSLab\LaravelAzureProvisioning\Controllers\ServiceProviderController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Support\Facades\Route;
 

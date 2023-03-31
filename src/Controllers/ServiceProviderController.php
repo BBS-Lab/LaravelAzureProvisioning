@@ -1,8 +1,8 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Controllers;
+namespace BBSLab\LaravelAzureProvisioning\Controllers;
 
-use RobTrehy\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
+use BBSLab\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 

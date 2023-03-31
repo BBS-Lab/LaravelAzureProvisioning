@@ -1,11 +1,11 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning;
+namespace BBSLab\LaravelAzureProvisioning;
 
-use RobTrehy\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
+use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use RobTrehy\LaravelAzureProvisioning\Utils\AzureHelper;
+use BBSLab\LaravelAzureProvisioning\Utils\AzureHelper;
 
 class AzureProvisioningProvider extends ServiceProvider
 {
@@ -43,7 +43,7 @@ class AzureProvisioningProvider extends ServiceProvider
                     throw (new AzureProvisioningException(sprintf('No resource %s found.', $name)))->setCode(404);
                 }
 
-                $resourceType = "RobTrehy\LaravelAzureProvisioning\Resources\\".$name."ResourceType";
+                $resourceType = "BBSLab\LaravelAzureProvisioning\Resources\\".$name."ResourceType";
 
                 return new $resourceType($name, $config);
             }

@@ -1,10 +1,10 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Resources;
+namespace BBSLab\LaravelAzureProvisioning\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
-use RobTrehy\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
+use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
 
 class GroupsResourceType extends ResourceType
 {

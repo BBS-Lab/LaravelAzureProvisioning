@@ -1,8 +1,8 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Controllers;
+namespace BBSLab\LaravelAzureProvisioning\Controllers;
 
-use RobTrehy\LaravelAzureProvisioning\SCIM\ResourceType;
+use BBSLab\LaravelAzureProvisioning\SCIM\ResourceType;
 use Illuminate\Routing\Controller;
 
 class ResourceTypeController extends Controller

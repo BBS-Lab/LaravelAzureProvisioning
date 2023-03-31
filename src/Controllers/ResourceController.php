@@ -1,16 +1,16 @@
 <?php
 
-namespace RobTrehy\LaravelAzureProvisioning\Controllers;
+namespace BBSLab\LaravelAzureProvisioning\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
-use RobTrehy\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
-use RobTrehy\LaravelAzureProvisioning\Resources\ResourceType;
-use RobTrehy\LaravelAzureProvisioning\SCIM\ListResponse;
-use RobTrehy\LaravelAzureProvisioning\Utils\AzureHelper;
-use RobTrehy\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
+use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
+use BBSLab\LaravelAzureProvisioning\Resources\ResourceType;
+use BBSLab\LaravelAzureProvisioning\SCIM\ListResponse;
+use BBSLab\LaravelAzureProvisioning\Utils\AzureHelper;
+use BBSLab\LaravelAzureProvisioning\Utils\SCIMConstantsV2;
 use Tmilos\ScimFilterParser\Error\FilterException;
 use Tmilos\ScimFilterParser\Parser;
 use Tmilos\ScimFilterParser\Mode;

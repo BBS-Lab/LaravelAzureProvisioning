@@ -24,18 +24,18 @@
     },
     "autoload": {
         "psr-4": {
-            "RobTrehy\\LaravelAzureProvisioning\\": "src"
+            "BBSLab\\LaravelAzureProvisioning\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "RobTrehy\\LaravelAzureProvisioning\\Tests\\": "tests"
+            "BBSLab\\LaravelAzureProvisioning\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "RobTrehy\\LaravelAzureProvisioning\\AzureProvisioningProvider"
+                "BBSLab\\LaravelAzureProvisioning\\AzureProvisioningProvider"
             ]
         }
     },
