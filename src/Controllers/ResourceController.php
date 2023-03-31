@@ -5,6 +5,7 @@ namespace BBSLab\LaravelAzureProvisioning\Controllers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
 use BBSLab\LaravelAzureProvisioning\Resources\ResourceType;
@@ -196,30 +197,12 @@ class ResourceController extends Controller
 
     protected static function validateSCIM(ResourceType $resourceType, $input, ?Model $resourceObject)
     {
-        $objectPreparedForValidation = [];
         $validations = $resourceType->getValidations();
-        $simpleValidations = [];
 
-        foreach ($input as $key => $value) {
-            $_key = str_replace('.', '___', strtolower($resourceType->getAttributefromSCIMAttribute($key)));
-            if ($_key === "active") {
-                $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-            }
-            $objectPreparedForValidation[$_key] = $value;
-        }
-        foreach ($validations as $key => $value) {
-            $_key = str_replace('.', '___', strtolower($resourceType->getAttributefromSCIMAttribute($key)));
-            $simpleValidations[$_key]  = !is_string($value) ? $value
-                : ($resourceObject != null
-                    ? preg_replace('/,\[OBJECT_ID\]/', ','.$resourceObject->id, $value)
-                    : str_replace(',[OBJECT_ID]', '', $value));
-        }
-
-        $validator = Validator::make($objectPreparedForValidation, $simpleValidations);
+        $validator = Validator::make($input, $validations);
 
         if ($validator->fails()) {
             $e = $validator->errors();
-            $e = self::replaceKeys($e->toArray());
 
             throw (new AzureProvisioningException('Invalid Data!'))
                 ->setCode(400)
@@ -227,27 +210,6 @@ class ResourceController extends Controller
                 ->setErrors($e);
         }
 
-        $validTemp = $validator->validate();
-        $valid = [];
-
-        $keys = collect($simpleValidations)->keys()->map(
-            function ($rule) {
-                return explode('.', $rule)[0];
-            }
-        )->unique()->toArray();
-
-        foreach ($keys as $key) {
-            if (array_key_exists($key, $validTemp)) {
-                $valid[$key] = $validTemp[$key];
-            }
-        }
-
-        $result = [];
-        foreach ($valid as $key => $value) {
-            $key = str_replace('___', '.', $key);
-            $result[$key] = $value;
-        }
-
-        return $result;
+        return Arr::dot($validator->validated());
     }
 }
