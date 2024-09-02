@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use BBSLab\LaravelAzureProvisioning\Exceptions\AzureProvisioningException;
 use BBSLab\LaravelAzureProvisioning\Resources\ResourceType;
@@ -25,6 +26,8 @@ class ResourceController extends Controller
         try {
             $args = json_encode([$request->all(), $resourceType->getName()]);
 
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@create - request : '.$args);
+
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@create - request : ', $args)
                 ->setSeverity('info')
                 ->setSeverityReason(['type' => '[AD-PROVISIONING] ResourceController@create - request']);
@@ -36,13 +39,17 @@ class ResourceController extends Controller
 
             $res = AzureHelper::objectToSCIMCreateResponse($resourceObject, $resourceType);
 
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@create - response : '.$res->getContent());
+
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@create - response : ', $res->getContent())
                 ->setSeverity('info')
                 ->setSeverityReason(['type' => '[AD-PROVISIONING] ResourceController@create - response']);
+            Bugsnag::notify($report);
 
             return $res;
         } catch (\Exception $e) {
             Bugsnag::notifyException($e);
+            Log::channel('cloudwatch')->error('[AD-PROVISIONING] ResourceController@create - error : '.$e->getMessage());
         }
     }
 
@@ -50,6 +57,8 @@ class ResourceController extends Controller
     {
         try {
             $args = json_encode($request->all());
+
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@show - request : '.$args);
 
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@show - request : ', $args)
                 ->setSeverity('info')
@@ -65,6 +74,8 @@ class ResourceController extends Controller
                 is_null($request->input('excludedAttributes')) ? [] : explode(',', $request->input('excludedAttributes')),
             );
 
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@show - response : '.$res->getContent());
+
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@show - response : ', $res->getContent())
                 ->setSeverity('info')
                 ->setSeverityReason(['type' => '[AD-PROVISIONING] ResourceController@show - response']);
@@ -73,6 +84,7 @@ class ResourceController extends Controller
             return $res;
         } catch (\Exception $e) {
             Bugsnag::notifyException($e);
+            Log::channel('cloudwatch')->error('[AD-PROVISIONING] ResourceController@show - error : '.$e->getMessage());
         }
     }
 
@@ -80,6 +92,8 @@ class ResourceController extends Controller
     {
         try {
             $args = json_encode($request->all());
+
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@delete - request : '.$args);
 
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@delete - request : ', $args)
                 ->setSeverity('info')
@@ -93,6 +107,7 @@ class ResourceController extends Controller
             return response(null, 204);
         } catch (\Exception $e) {
             Bugsnag::notifyException($e);
+            Log::channel('cloudwatch')->error('[AD-PROVISIONING] ResourceController@delete - error : '.$e->getMessage());
         }
     }
 
@@ -100,6 +115,8 @@ class ResourceController extends Controller
     {
         try {
             $args = json_encode($request->all());
+
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@update - request : '.$args);
 
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@update - request : ', $args)
                 ->setSeverity('info')
@@ -137,6 +154,8 @@ class ResourceController extends Controller
 
             $res = AzureHelper::objectToSCIMResponse($resourceObject, $resourceType);
 
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@update - response : '.$res->getContent());
+
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@update - response : ', $res->getContent())
                 ->setSeverity('info')
                 ->setSeverityReason(['type' => '[AD-PROVISIONING] ResourceController@update - response']);
@@ -145,6 +164,7 @@ class ResourceController extends Controller
             return $res;
         } catch (\Exception $e) {
             Bugsnag::notifyException($e);
+            Log::channel('cloudwatch')->error('[AD-PROVISIONING] ResourceController@update - error : '.$e->getMessage());
         }
     }
 
@@ -152,6 +172,8 @@ class ResourceController extends Controller
     {
         try {
             $args = json_encode($request->all());
+
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@replace - request : '.$args);
 
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@replace - request : ', $args)
                 ->setSeverity('info')
@@ -172,6 +194,8 @@ class ResourceController extends Controller
 
             $res = AzureHelper::objectToSCIMResponse($resourceObject, $resourceType);
 
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@replace - response : '.$res->getContent());
+
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@replace - response : ', $res->getContent())
                 ->setSeverity('info')
                 ->setSeverityReason(['type' => '[AD-PROVISIONING] ResourceController@replace - response']);
@@ -180,6 +204,7 @@ class ResourceController extends Controller
             return $res;
         } catch (\Exception $e) {
             Bugsnag::notifyException($e);
+            Log::channel('cloudwatch')->error('[AD-PROVISIONING] ResourceController@replace - error : '.$e->getMessage());
         }
     }
 
@@ -187,6 +212,8 @@ class ResourceController extends Controller
     {
         try {
             $args = json_encode($request->all());
+
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@index - request : '.$args);
 
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@index - request : ', $args)
                 ->setSeverity('info')
@@ -239,6 +266,8 @@ class ResourceController extends Controller
                 $resourceType
             );
 
+            Log::channel('cloudwatch')->info('[AD-PROVISIONING] ResourceController@index - response : '.$res->getContent());
+
             $report = Report::fromNamedError(Bugsnag::getConfig(), '[AD-PROVISIONING] ResourceController@index - response : ', $res->getContent())
                 ->setSeverity('info')
                 ->setSeverityReason(['type' => '[AD-PROVISIONING] ResourceController@index - response']);
@@ -247,6 +276,7 @@ class ResourceController extends Controller
             return $res;
         } catch (\Exception $e) {
             Bugsnag::notifyException($e);
+            Log::channel('cloudwatch')->error('[AD-PROVISIONING] ResourceController@index - error : '.$e->getMessage());
         }
     }
 
